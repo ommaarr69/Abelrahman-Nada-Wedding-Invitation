@@ -496,7 +496,7 @@ footer {
 /* RESPONSIVE DESIGN */
 @media (max-width: 900px) {
   .hero-names {
-    font-size: 5rem;
+    font-size: 4rem;
   }
 
   .grid-2 {
