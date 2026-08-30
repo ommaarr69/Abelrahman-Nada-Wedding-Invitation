@@ -117,39 +117,6 @@ body {
   display: block;
 }
 
-.tap-hint {
-  margin-top: 35px;
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 1.3rem;
-  letter-spacing: 4px;
-  text-transform: uppercase;
-  color: var(--olive-dark);
-  font-weight: 500;
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  animation: pulse 2s infinite;
-}
-
-@keyframes pulse {
-
-  0%,
-  100% {
-    opacity: 0.6;
-  }
-
-  50% {
-    opacity: 1;
-  }
-}
-
-.tap-hint span {
-  display: inline-block;
-  width: 40px;
-  height: 1px;
-  background-color: var(--gold-accent);
-}
-
 /* ==========================================
    MAIN INVITATION SITE (FULL WIDTH)
 ========================================== */
@@ -163,49 +130,6 @@ body {
 #main-site.active {
   opacity: 1;
   transform: translateY(0) scale(1);
-}
-
-/* NAVIGATION BAR */
-.navbar {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  padding: 20px 8%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  z-index: 100;
-  background: rgba(250, 246, 240, 0.85);
-  backdrop-filter: blur(10px);
-  border-bottom: 1px solid rgba(197, 160, 89, 0.2);
-}
-
-.nav-logo {
-  font-family: 'Alex Brush', cursive;
-  font-size: 2.2rem;
-  color: var(--olive-dark);
-  text-decoration: none;
-}
-
-.nav-links {
-  display: flex;
-  gap: 30px;
-  list-style: none;
-}
-
-.nav-links a {
-  text-decoration: none;
-  color: var(--olive-dark);
-  font-size: 0.82rem;
-  font-weight: 500;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  transition: var(--transition);
-}
-
-.nav-links a:hover {
-  color: var(--gold-accent);
 }
 
 /* SECTION LAYOUTS */
@@ -263,7 +187,7 @@ section {
 
 .hero-names {
   font-family: 'Alex Brush', cursive;
-  font-size: 7.5rem;
+  font-size: 5.5rem;
   color: var(--olive-dark);
   line-height: 1.1;
   margin-bottom: 10px;
@@ -295,33 +219,6 @@ section {
   border-bottom: 1px solid var(--gold-accent);
   padding: 12px 35px;
   display: inline-block;
-}
-
-/* OUR STORY SECTION */
-.story-section {
-  background-color: var(--white);
-}
-
-.story-container {
-  max-width: 900px;
-  margin: 0 auto;
-  text-align: center;
-}
-
-.story-quote {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 2rem;
-  line-height: 1.6;
-  color: var(--olive-dark);
-  font-style: italic;
-  margin-bottom: 30px;
-}
-
-.story-text {
-  font-size: 1rem;
-  color: var(--text-muted);
-  line-height: 1.9;
-  font-weight: 300;
 }
 
 /* TIMELINE SECTION */
@@ -596,82 +493,8 @@ footer {
 }
  */
 
-
-/* MUSIC TOGGLE */
-#musicToggle {
-  position: fixed;
-  right: 22px;
-  bottom: 22px;
-  z-index: 80;
-  width: 52px;
-  height: 52px;
-  border-radius: 50%;
-  background: var(--olive-dark);
-  color: var(--white);
-  border: none;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 18px;
-  box-shadow: var(--shadow-soft);
-  transition: transform .3s ease;
-}
-
-#musicToggle:hover {
-  transform: scale(1.08) rotate(8deg);
-}
-
-#musicToggle .bars {
-  display: flex;
-  gap: 2px;
-  align-items: flex-end;
-  height: 16px;
-}
-
-#musicToggle .bars i {
-  width: 2.5px;
-  background: var(--white);
-  border-radius: 2px;
-  display: block;
-  animation: barBounce 1s ease-in-out infinite;
-}
-
-#musicToggle .bars i:nth-child(2) {
-  animation-delay: .15s;
-}
-
-#musicToggle .bars i:nth-child(3) {
-  animation-delay: .3s;
-}
-
-#musicToggle.paused .bars i {
-  animation-play-state: paused;
-  height: 4px !important;
-}
-
-@keyframes barBounce {
-
-  0%,
-  100% {
-    height: 5px;
-  }
-
-  50% {
-    height: 16px;
-  }
-}
-
 /* RESPONSIVE DESIGN */
 @media (max-width: 900px) {
-  .navbar {
-    padding: 15px 5%;
-  }
-
-  .nav-links {
-    display: none;
-  }
-
   .hero-names {
     font-size: 5rem;
   }
@@ -965,5 +788,188 @@ footer {
 @media (prefers-reduced-motion: reduce) {
   .brand-icon {
     transition: none;
+  }
+}
+
+/* ==========================================
+   OUR STORY — alternating photo/text timeline
+   Uses the project's own :root palette
+   (--bg-cream, --gold-accent, --gold-soft, --text-dark, etc.)
+========================================== */
+.story-timeline-section {
+  padding: 4.5rem 1.5rem 3rem;
+  background: var(--bg-cream);
+}
+
+.story-timeline-header {
+  text-align: center;
+  margin-bottom: 3.5rem;
+}
+
+.story-timeline-title {
+  font-family: 'Alex Brush', cursive;
+  font-weight: 400;
+  font-size: clamp(2.6rem, 8vw, 3.6rem);
+  color: var(--gold-accent);
+  margin: 0;
+}
+
+.story-timeline-rule {
+  width: 46px;
+  height: 2px;
+  background: var(--gold-soft);
+  margin: 0.9rem auto 0;
+}
+
+.story-timeline {
+  max-width: 760px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 3.5rem;
+}
+
+.story-row {
+  display: flex;
+  align-items: center;
+  gap: 2.25rem;
+}
+
+/* alternate side + tilt direction, no extra classes needed */
+.story-row:nth-child(even) {
+  flex-direction: row-reverse;
+}
+
+
+
+.story-photo {
+  flex: 0 0 auto;
+  width: 42%;
+  max-width: 260px;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: var(--shadow-deep);
+  transform: rotate(-3deg);
+}
+
+.story-photo img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+}
+
+.story-text {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.story-heading {
+  font-family: 'Alex Brush', cursive;
+  font-weight: 400;
+  font-size: clamp(1.6rem, 5vw, 2.1rem);
+  color: var(--gold-accent);
+  margin: 0 0 0.5rem;
+}
+
+.story-body {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.05rem;
+  line-height: 1.6;
+  color: var(--text-muted);
+  margin: 0;
+}
+
+@media (max-width: 640px) {
+
+  .story-row,
+  .story-row:nth-child(even) {
+    text-align: center;
+    gap: 1.25rem;
+  }
+
+  .story-photo {
+    width: 68%;
+    max-width: 200px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .story-photo {
+    transition: none;
+  }
+}
+
+.kids-notice-section {
+  padding: 1rem 1.5rem;
+  background: var(--bg-beige);
+}
+
+.kids-notice-card {
+  max-width: 480px;
+  margin: 0 auto;
+  text-align: center;
+  background: var(--card-beige);
+  border-radius: 20px;
+  padding: 2.75rem 2rem;
+  box-shadow: var(--shadow-soft);
+  border: 1px solid rgba(197, 160, 89, 0.25);
+}
+
+.kids-notice-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.1rem;
+  animation: kids-notice-wobble 4.5s ease-in-out infinite;
+}
+
+@keyframes kids-notice-wobble {
+
+  0%,
+  100% {
+    transform: rotate(-4deg);
+  }
+
+  50% {
+    transform: rotate(4deg);
+  }
+}
+
+.kids-notice-title {
+  font-family: 'Alex Brush', cursive;
+  font-weight: 400;
+  font-size: clamp(2rem, 6vw, 2.6rem);
+  color: var(--gold-accent);
+  margin: 0;
+}
+
+.kids-notice-subtitle {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.72rem;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--olive-light);
+  margin: 0.3rem 0 1.4rem;
+}
+
+.kids-notice-body {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.08rem;
+  line-height: 1.7;
+  color: var(--text-muted);
+  margin: 0 0 1.1rem;
+}
+
+.kids-notice-thanks {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.85rem;
+  color: var(--text-dark);
+  margin: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .kids-notice-icon {
+    animation: none;
   }
 }

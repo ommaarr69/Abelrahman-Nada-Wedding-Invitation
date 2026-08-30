@@ -7,7 +7,6 @@ document.body.classList.add('no-scroll');
 gsap.registerPlugin(ScrollTrigger);
 
 document.addEventListener("DOMContentLoaded", () => {
-  // Intersection Observer لظهور العناصر عند السكرول
   const reveals = document.querySelectorAll(".reveal");
   const observerOptions = { threshold: 0.15 };
 
@@ -22,7 +21,7 @@ document.addEventListener("DOMContentLoaded", () => {
   reveals.forEach((el) => revealObserver.observe(el));
 
   // العداد التنازلي
-  const eventDate = new Date("August 21, 2026 18:00:00").getTime();
+  const eventDate = new Date("October 20, 2026 18:00:00").getTime();
   function updateCountdown() {
     const now = new Date().getTime();
     const diff = eventDate - now;
@@ -41,30 +40,12 @@ document.addEventListener("DOMContentLoaded", () => {
   }
   setInterval(updateCountdown, 1000);
   updateCountdown();
-
-  // التحكم بزرار تشغيل/إيقاف الموسيقى يدويًا
-  const musicToggle = document.getElementById("musicToggle");
-  const audio = document.getElementById("bgMusic");
-
-  if (musicToggle && audio) {
-    musicToggle.addEventListener("click", () => {
-      if (audio.paused) {
-        audio.play();
-        musicToggle.classList.remove("paused");
-      } else {
-        audio.pause();
-        musicToggle.classList.add("paused");
-      }
-    });
-  }
 });
 
-// دالة فتح الظرف وتفعيل الأنيمشن والموسيقى
+// دالة فتح الظرف وتفعيل الأنيمشن
 function openInvitation() {
   const envelopeScreen = document.getElementById("envelope-screen");
   const mainSite = document.getElementById("main-site");
-  const audio = document.getElementById("bgMusic");
-  const musicToggle = document.getElementById("musicToggle");
   document.body.classList.remove('no-scroll');
 
   // 1. إضافة كلاس الفتح للظرف والموقع
@@ -73,44 +54,7 @@ function openInvitation() {
   // 2. تأخير بسيط في ظهور الموقع ليعطي إحساس خروج الكارت ببطء ونعومة
   setTimeout(() => {
     mainSite.classList.add("active");
-    createPetals(); // إنشاء تساقط الورد عند فتح الدعوة
   }, 600);
-
-  // 3. تشغيل الموسيقى تلقائياً
-  if (audio) {
-    audio.play().then(() => {
-      if (musicToggle) musicToggle.classList.remove("paused");
-    }).catch(err => {
-      console.log("Autoplay was prevented by browser:", err);
-    });
-  }
-}
-
-// دالة تساقط الورد الاحترافية
-function createPetals() {
-  const container = document.getElementById("petals");
-  if (!container) return;
-
-  const petalCount = 25; // زيادة عدد الورد لإعطاء منظر أجمل
-
-  for (let i = 0; i < petalCount; i++) {
-    const petal = document.createElement("div");
-    petal.classList.add("petal");
-
-    const size = Math.random() * 14 + 10;
-    const left = Math.random() * 100;
-    const fallDuration = Math.random() * 6 + 7; // هبوط ناعم وبطيء
-    const swayDuration = Math.random() * 3 + 2;
-    const delay = Math.random() * 4;
-
-    petal.style.width = `${size}px`;
-    petal.style.height = `${size * 1.3}px`;
-    petal.style.left = `${left}%`;
-    petal.style.animationDuration = `${fallDuration}s, ${swayDuration}s`;
-    petal.style.animationDelay = `${delay}s, ${delay}s`;
-
-    container.appendChild(petal);
-  }
 }
 
 const RSVP_API =
@@ -227,13 +171,12 @@ gsap.utils.toArray("section").forEach((section) => {
   });
 
 });
+
 (function initSongPlayer() {
   const section = document.getElementById('song');
   if (!section) return; // section not on this page, skip safely
 
   const audio = document.getElementById('songAudio');
-  const bgMusic = document.getElementById('bgMusic');
-  const musicToggle = document.getElementById('musicToggle');
   const waveContainer = document.getElementById('songWaveBars');
   const playBtn = document.getElementById('songPlay');
   const prevBtn = document.getElementById('songPrev');
@@ -359,10 +302,6 @@ gsap.utils.toArray("section").forEach((section) => {
     if (audio.paused) {
       ensureAudioGraph();
       if (audioCtx && audioCtx.state === 'suspended') audioCtx.resume();
-      if (bgMusic && !bgMusic.paused) {
-        bgMusic.pause();
-        if (musicToggle) musicToggle.classList.add('paused');
-      }
       audio.play();
     } else {
       audio.pause();
@@ -400,6 +339,7 @@ gsap.utils.toArray("section").forEach((section) => {
   function seekFromEvent(evt) {
     const rect = scrubber.getBoundingClientRect();
     const clientX = evt.touches ? evt.touches[0].clientX : evt.clientX;
+    if (clientX < rect.left || clientX > rect.right) return null;
     const ratio = Math.min(Math.max((clientX - rect.left) / rect.width, 0), 1);
     fill.style.width = ratio * 100 + '%';
     thumb.style.left = ratio * 100 + '%';
@@ -456,5 +396,49 @@ gsap.utils.toArray("section").forEach((section) => {
         { y: 14, opacity: 0, duration: 0.45, stagger: 0.08 },
         '-=0.35'
       );
+  }
+})();
+
+(function initStoryTimeline() {
+  const rows = document.querySelectorAll('.story-row');
+  if (!rows.length || !window.gsap) return;
+
+  if (window.ScrollTrigger) {
+    gsap.registerPlugin(ScrollTrigger);
+  }
+
+  const prefersReducedMotion =
+    window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  rows.forEach((row, i) => {
+    const photo = row.querySelector('.story-photo');
+    const heading = row.querySelector('.story-heading');
+    const body = row.querySelector('.story-body');
+    if (!photo) return;
+
+    // even rows (0-indexed: 1, 3, 5...) are visually reversed by CSS,
+    // so their photo should enter from the right instead of the left
+    const isReversed = i % 2 === 1;
+    const photoFromX = prefersReducedMotion ? 0 : isReversed ? 0 : 0;
+
+    gsap.timeline({
+      scrollTrigger: {
+        trigger: row,
+        start: 'top 78%',
+        toggleActions: 'play none none none',
+      },
+      defaults: { ease: 'power3.out' },
+    })
+      .from(photo, { x: photoFromX, opacity: 1, duration: 0.8 })
+      .from(heading, { y: 24, opacity: 0, duration: 0.6 }, '-=0.45')
+      .from(body, { y: 20, opacity: 0, duration: 0.6 }, '-=0.4');
+  });
+  if (window.ScrollTrigger) {
+    window.addEventListener('load', () => ScrollTrigger.refresh());
+
+    document.querySelectorAll('.story-photo img').forEach((img) => {
+      if (img.complete) return;
+      img.addEventListener('load', () => ScrollTrigger.refresh(), { once: true });
+    });
   }
 })();
