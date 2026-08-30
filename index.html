@@ -1,0 +1,333 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>Abdelrahman & Nada — Wedding Celebration</title>
+  <meta name="description"
+    content="You are cordially invited to the wedding celebration of Abdelrahman & Nada. 21 August 2026." />
+  <meta property="og:image" content="./img/engagement.jpg" />
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Montserrat:wght@200;300;400;500;600&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<audio id="songAudio" loop preload="auto">
+  <source src="./new-song.mp3" type="audio/mpeg">
+</audio>
+
+<body>
+
+
+  <!-- ==========================================
+        1. FULLSCREEN ENVELOPE OPENING
+    ========================================== -->
+  <div id="envelope-screen" class="no-scroll" onclick="openInvitation()">
+    <div class="envelope-container">
+      <div class="envelope-wrapper">
+        <img src="./img/new-envelope.png" alt="Engagement Envelope" class="envelope-img" />
+      </div>
+    </div>
+    <!-- <div class="tap-hint">
+        <span></span> Tap to Open Invitation <span></span>
+      </div> -->
+  </div>
+
+  <!-- ==========================================
+        2. FULL WEBSITE INVITATION
+    ========================================== -->
+  <div id="main-site">
+
+    <!-- HERO SECTION -->
+    <section id="hero" class="hero-section">
+      <p class="hero-eyebrow">Together with their families</p>
+      <h1 class="hero-names">Abdelrahman <p class="amp">&</p> Nada</h1>
+      <p class="hero-tagline">Are getting married!</p>
+      <div class="hero-date">Friday, 21 August 2026</div>
+    </section>
+
+    <section id="song" class="song-section reveal">
+      <p class="song-eyebrow">Together with their families</p>
+      <h2 class="song-initials">A &amp; N</h2>
+      <p class="song-subtitle">ABDELRAHMAN &amp; NADA</p>
+
+      <div class="song-wave-wrap">
+        <div class="song-wave-photo-frame">
+          <img src="./img/nada.jpeg" alt="Abdelrahman & Nada" class="song-wave-photo" />
+          <div class="song-wave-bars" id="songWaveBars"></div>
+        </div>
+      </div>
+
+      <p class="song-caption">ABDELRAHMAN &amp; NADA&nbsp;&nbsp;|&nbsp;&nbsp;21.08.26</p>
+
+      <div class="song-scrubber" id="songScrubber">
+        <div class="song-scrubber-track">
+          <div class="song-scrubber-fill" id="songFill"></div>
+          <div class="song-scrubber-thumb" id="songThumb"></div>
+        </div>
+      </div>
+
+      <div class="song-times">
+        <span id="songElapsed">0:00</span>
+        <span id="songRemaining">-0:00</span>
+      </div>
+
+      <div class="song-controls">
+        <button class="song-btn song-btn--prev" type="button" aria-label="Rewind 10 seconds" id="songPrev">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
+            <path d="M11 18V6l-8 6 8 6zm.5-6 8 6V6l-8 6z" />
+          </svg>
+        </button>
+
+        <button class="song-btn song-btn--play" type="button" aria-label="Play" id="songPlay">
+          <svg class="icon-play" viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
+            <path d="M8 5v14l11-7z" />
+          </svg>
+          <svg class="icon-pause" viewBox="0 0 24 24" width="20" height="20" fill="currentColor" style="display:none">
+            <path d="M6 5h4v14H6zM14 5h4v14h-4z" />
+          </svg>
+        </button>
+
+        <button class="song-btn song-btn--next" type="button" aria-label="Forward 10 seconds" id="songNext">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
+            <path d="M13 6v12l8-6-8-6zm-.5 6-8-6v12z" />
+          </svg>
+        </button>
+      </div>
+
+      <!--
+    Dedicated audio for THIS section only — separate from #bgMusic.
+    Swap the src to whichever track is "your song".
+    No autoplay attribute: stays silent until #songPlay is clicked.
+  -->
+      <audio id="songAudio" preload="metadata" crossorigin="anonymous">
+        <source src="./our-song.mp3" type="audio/mpeg">
+      </audio>
+    </section>
+
+    <!-- OUR STORY SECTION -->
+    <section id="story" class="story-section reveal">
+      <div class="story-container">
+        <div class="ornament">🌿</div>
+        <h2 class="section-title">The Beginning of Forever</h2>
+        <p class="section-subtitle">Our Love Story</p>
+        <p class="story-quote">
+          "Two souls with but a single thought, two hearts that beat as one."
+        </p>
+        <p class="story-text">
+          With joy in our hearts and gratitude in our souls, we invite you to
+          celebrate the start of our official journey together. Your presence
+          will make our special day complete as we write the first chapter of
+          our forever.
+        </p>
+      </div>
+    </section>
+
+    <!-- TIMELINE SCHEDULE SECTION -->
+    <section id="schedule" class="timeline-section reveal">
+      <h2 class="section-title">Celebration Schedule</h2>
+      <p class="section-subtitle">Order of Events</p>
+
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <div class="timeline-time">6:00 PM</div>
+            <h3 class="timeline-title">Guest Arrival & Welcome</h3>
+            <p>Welcome drinks and music as our cherished guests arrive.</p>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <div class="timeline-time">7:00 PM</div>
+            <h3 class="timeline-title">Ring Exchange Ceremony</h3>
+            <p>The memorable moment of exchanging engagement rings.</p>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <div class="timeline-time">8:00 PM</div>
+            <h3 class="timeline-title">Dinner & Refreshments</h3>
+            <p>Enjoying a delicious culinary experience together.</p>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <div class="timeline-time">9:30 PM</div>
+            <h3 class="timeline-title">Dance & Celebration</h3>
+            <p>Dancing the night away to celebrate our happiness!</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- COUNTDOWN SECTION -->
+    <section class="countdown-section reveal">
+      <h2 class="section-title">Counting Down To The Big Day</h2>
+      <p class="section-subtitle" style="color: var(--gold-soft)">
+        August 21, 2026
+      </p>
+
+      <div class="countdown-grid">
+        <div class="countdown-card">
+          <div class="countdown-num" id="cd-days">00</div>
+          <div class="countdown-label">Days</div>
+        </div>
+        <div class="countdown-card">
+          <div class="countdown-num" id="cd-hours">00</div>
+          <div class="countdown-label">Hours</div>
+        </div>
+        <div class="countdown-card">
+          <div class="countdown-num" id="cd-minutes">00</div>
+          <div class="countdown-label">Minutes</div>
+        </div>
+        <div class="countdown-card">
+          <div class="countdown-num" id="cd-seconds">00</div>
+          <div class="countdown-label">Seconds</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- DETAILS GRID SECTION (Location & Dress Code) -->
+    <section id="details" class="details-grid-section reveal">
+      <h2 class="section-title">Important Details</h2>
+      <p class="section-subtitle">Everything You Need To Know</p>
+
+      <div class="grid-2">
+        <!-- Location Box -->
+        <div class="detail-box">
+          <div class="detail-icon">📍</div>
+          <h3>The Venue</h3>
+          <p>
+            <strong>10 of Ramdan City</strong><br />
+            Sharqia, Egypt
+          </p>
+          <a href="https://maps.app.goo.gl/nUrZCGuoU8HxSTdu5" target="_blank" class="btn">Open Location Map 🗺️</a>
+        </div>
+
+        <!-- Dress Code Box -->
+        <div class="detail-box">
+          <div class="detail-icon">👗👔</div>
+          <h3>Dress Code</h3>
+          <p>
+            <strong>Elegant Formal Attire</strong><br />We kindly encourage
+            Earthy Tones, Olive Green, Beige, & Soft Gold.
+          </p>
+          <span style="
+                font-size: 0.85rem;
+                color: var(--gold-accent);
+                letter-spacing: 2px;
+                text-transform: uppercase;
+              ">Dress To Impress</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- RSVP SECTION -->
+    <section id="rsvp" class="rsvp-section reveal">
+      <h2 class="section-title">Will You Attend?</h2>
+      <p class="section-subtitle">Please Confirm Your Presence</p>
+
+      <div class="rsvp-container">
+
+        <form id="rsvpForm">
+
+          <div class="form-group">
+            <label for="guestName">Full Name</label>
+            <input type="text" name="guestName" id="guestName" class="form-control" placeholder="Enter your full name"
+              required>
+            <small class="err" data-for="guestName"></small>
+          </div>
+
+          <div class="form-group">
+            <label for="message">
+              Give a message
+            </label>
+
+            <input type="text" name="message" id="message" class="form-control"
+              placeholder="What message would you like to share?">
+          </div>
+
+          <button id="submitBtn" type="submit" class="btn btn-full">
+
+            <span id="btnText">
+              Send RSVP Confirmation ✨
+            </span>
+
+          </button>
+
+          <div id="formSuccess" class="form-success" style="display:none;">
+
+            <h3>❤️ Thank You!</h3>
+
+            <p>
+              Your RSVP has been received successfully.
+            </p>
+
+          </div>
+
+        </form>
+
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+      Abdelrahman & Nada — 21.08.2026 — We can't wait to celebrate with you!
+    </footer>
+
+    <div class="brand-footer">
+      <p class="brand-footer-text">
+        Crafted with <span aria-hidden="true">🤍</span> by
+        <strong>Wedding Invitations Eg</strong>
+      </p>
+
+      <div class="brand-footer-icons">
+        <a href="https://wa.me/201018708633" target="_blank" rel="noopener" class="brand-icon"
+          aria-label="Chat with us on WhatsApp">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
+            <path
+              d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.39 1.26 4.81L2 22l5.42-1.35a9.83 9.83 0 0 0 4.62 1.17h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.13-2.9-7C17.19 3.04 14.7 2 12.04 2Zm0 1.67c2.22 0 4.3.87 5.87 2.44a8.26 8.26 0 0 1 2.43 5.8c0 4.55-3.7 8.25-8.26 8.25a8.2 8.2 0 0 1-4.19-1.15l-.3-.18-3.11.78.83-3.03-.2-.31a8.19 8.19 0 0 1-1.26-4.39c0-4.55 3.7-8.21 8.19-8.21Zm-4.42 4.68c-.15 0-.4.06-.61.29-.21.24-.8.78-.8 1.9s.82 2.21.94 2.36c.11.16 1.6 2.55 3.95 3.47 1.95.77 2.35.62 2.77.58.42-.04 1.36-.55 1.55-1.09.19-.53.19-.99.13-1.09-.06-.1-.21-.15-.44-.27-.23-.11-1.36-.67-1.57-.75-.21-.08-.36-.11-.51.12-.15.23-.59.75-.72.9-.13.16-.27.17-.5.06-.23-.12-.96-.36-1.83-1.14-.68-.6-1.13-1.35-1.27-1.58-.13-.23-.01-.35.1-.47.11-.11.23-.27.35-.4.11-.14.15-.23.23-.39.08-.16.04-.29-.02-.4-.06-.12-.51-1.26-.72-1.72-.19-.44-.38-.39-.51-.4a9.7 9.7 0 0 0-.44-.01Z" />
+          </svg>
+        </a>
+
+        <a href="https://www.instagram.com/wedding.invitations.eg" target="_blank" rel="noopener" class="brand-icon"
+          aria-label="Follow us on Instagram">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8">
+            <rect x="3" y="3" width="18" height="18" rx="5" />
+            <circle cx="12" cy="12" r="4.2" />
+            <circle cx="17.4" cy="6.6" r="1.1" fill="currentColor" stroke="none" />
+          </svg>
+        </a>
+
+        <a href="https://www.tiktok.com/@wedding.invitationss?is_from_webapp=1&sender_device=pc" target="_blank"
+          rel="noopener" class="brand-icon" aria-label="Follow us on TikTok">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
+            <path
+              d="M16.6 2h-3.2v13.2a2.9 2.9 0 1 1-2.05-2.78V9.13a6.1 6.1 0 1 0 5.25 6.04V8.62a7.9 7.9 0 0 0 4.6 1.47V6.9a4.7 4.7 0 0 1-4.6-4.9Z" />
+          </svg>
+        </a>
+      </div>
+    </div>
+  </div>
+  <button id="musicToggle" class="paused" aria-label="Toggle music" title="Toggle music">
+    <span class="bars"><i style="height:5px"></i><i style="height:12px"></i><i style="height:7px"></i></span>
+  </button>
+  <!-- JAVASCRIPT LOGIC -->
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/ScrollTrigger.min.js"></script>
+  <script src="script.js"></script>
+</body>
+
+</html>
