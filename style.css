@@ -63,8 +63,8 @@ body {
 
   /* overlay بسيط وشفاف جداً فوق الصورة (تم تقليل الشفافية لـ 0.35 و 0.45) */
   background-image:
-    linear-gradient(rgba(250, 246, 240, 0.75), rgba(230, 219, 203, 0.85)),
-    url("./img/background.jpg");
+    linear-gradient(rgba(250, 246, 240, 0.75), rgba(228, 225, 220, 0.205)),
+    url("./img/Wedding\ Day\ Glow.jpg");
 
   background-size: cover;
   background-position: center;
