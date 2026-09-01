@@ -509,7 +509,7 @@ footer {
 
   .timeline-item,
   .timeline-item:nth-child(even) {
-    width: 100%;
+    width: 90%;
     padding-left: 60px;
     padding-right: 0;
     margin-left: 0;

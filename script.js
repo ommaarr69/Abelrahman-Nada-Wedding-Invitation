@@ -58,9 +58,7 @@ function openInvitation() {
 }
 
 const RSVP_API =
-  "https://script.google.com/macros/s/AKfycbz4QCkbpVDpDyWhy58QFT3smepKIu-2ovcD2eCN6IkzGTKGHNharwIEGdvOchPF8AS0FA/exec";
-const invitationId =
-  new URLSearchParams(window.location.search).get("id") || "AbdelrahmanNadaWedding2026";
+  "https://script.google.com/macros/s/AKfycbxJ4B-jOemZTL8YyKJVKnZH636FGqw6B5KujqO9DfiU77z-bFhLLIhqmABp0R_URhg4/exec";
 
 const form = document.getElementById("rsvpForm");
 
@@ -71,6 +69,7 @@ form.addEventListener("submit", async (e) => {
 
   const fullName = document.getElementById("guestName").value.trim();
   const message = document.getElementById("message").value.trim();
+  const numberOfGuests = document.getElementById("numberOfGuests").value.trim();
 
   if (fullName.length < 2) {
 
@@ -94,8 +93,8 @@ form.addEventListener("submit", async (e) => {
       },
       mode: "no-cors",
       body: JSON.stringify({
-        invitationId,
         name: fullName,
+        guests: numberOfGuests,
         message: message
       })
     });
